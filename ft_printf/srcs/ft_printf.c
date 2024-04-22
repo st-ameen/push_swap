@@ -8,11 +8,11 @@ int ft_print_format(va_list ar, const char s)
 	else if (s == 's')
 		l += ft_print_str(va_arg(ar, char *));
 	else if (s == 'd' || s == 'i')
-		l += ft_print_nbr(va_arg(ar, int), 10);
+		l += ft_print_nbr(va_arg(ar, int));
 	else if (s == 'u')
 		l += ft_print_u(va_arg(ar, unsigned int));
 	else if (s == 'x' || s == 'X')
-		l += ft_print_nbr(va_arg(ar, int), 16);
+		l += ft_print_x(va_arg(ar, unsigned int), s);
 	else if (s == '%')
 		l += ft_putchar('%');
 	else if (s == 'p')

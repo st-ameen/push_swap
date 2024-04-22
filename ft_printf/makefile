@@ -1,4 +1,4 @@
-SRC	= $(wildcard src/*.c)
+SRC	= $(wildcard srcs/*.c)
 OBJS 	= ${SRC:.c=.o}
 INCS	= include
 NAME	= libftprintf.a

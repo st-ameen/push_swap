@@ -21,20 +21,23 @@ void print_p(uintptr_t n)
 	else
 	{
 		if (n <= 9)
-			write(1, &n, 1);
+			ft_putchar(n + '0');
 		else
-			write(1, (char[]){n - 10 + 'a'}, 1);
-
+			ft_putchar(n - 10 + 'a');
 	}
 }
 
-int ft_print_p(unsigned long long p)
+int	ft_print_p(unsigned long long p)
 {
-	int l = 0;
-	l += ft_print_str("0x");
+	int	l = 0;
+
+	l += write(1, "0x", 2);
 	if (p == 0)
-		return l += ft_putchar('0');
-	l += p_len(p);
-	print_p(p);
-	return l;
+		l += write(1, "0", 1);
+	else
+	{
+		print_p(p);
+		l += p_len(p);
+	}
+	return (l);
 }

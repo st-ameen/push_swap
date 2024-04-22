@@ -3,6 +3,14 @@
 int nbr_len(int i)
 {
 	int l = 0;
+	if (i == 0)
+		return 1;
+	if (i < 0)
+	{
+		l++;
+		i = -i;
+	}
+	
 	while (i != 0)
 	{
 		l++;
