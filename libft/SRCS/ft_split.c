@@ -1,20 +1,21 @@
 #include "libft.h"
-int is_safe(char **ss, char s, int w_c)
+
+int is_safe(char **str, char s, int w)
 {
-    while (w_c >= 0)
+    while (w >= 0)
     {
-        ss[w_c] = malloc(sizeof(char) * (ft_strlen(s) + 1));
-        if (!ss[w_c])
+        str[w] = malloc(sizeof(char) * (ft_strlen(s) + 1));
+        if (!str[w])
         {
-            while (w_c < (w_c + 1))
+            while (w < (w + 1))
             {
-                free(ss[w_c]);
-                w_c++;
+                free(str[w]);
+                w++;
             }
-            free(ss);
+            free(str);
             return 0;
         }
-        w_c--;
+        w--;
     }
     return 1;
 }
@@ -22,32 +23,32 @@ int is_safe(char **ss, char s, int w_c)
 int ft_word_count(const char *str, char c)
 {
     int i = 0;
-    int w_c = 0;
+    int w = 0;
     while (str[i])
     {
-        if (str[i]!= c && str[i + 1] == c)
+        if (str[i] != c && str[i + 1] == c)
         {
-            w_c++;
+            w++;
             while (str[i] == c)
                 i++;
         }
         i++;
     }
-    return (w_c);
+    return w;
 }
 
 char **ft_split(char const *s, char c)
 {
-    int w_c = ft_word_count(s, c);
+    int w = ft_word_count(s, c);
     int i = 0, j = 0, k = 0;
-    if (w_c == 0)
+    if (w == 0)
         return NULL;
-    char **ss = malloc(sizeof(char *) * (w_c + 1));
-    if (!ss)
+    char **str = malloc(sizeof(char *) * (w + 1));
+    if (!str)
         return NULL;
-    if (is_safe(ss, s, w_c) == 0)
+    if (is_safe(str, s, w) == 0)
     {
-        free(ss);
+        free(str);
         return NULL;
     }
     i = 0;
@@ -60,10 +61,10 @@ char **ft_split(char const *s, char c)
             j++;
             k = 0;
         }
-        ss[j][k] = s[i];
+        str[j][k] = s[i];
         k++;
         i++;
     }
-    ss[j + 1] = NULL;
-    return (ss);
+    str[j + 1] = NULL;
+    return (str);
 }
