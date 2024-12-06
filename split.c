@@ -1,5 +1,15 @@
 #include "push_swap.h"
 
+void ft_putstr(char *s)
+{
+	int i;
+
+	i = 0;
+	while(s[i])
+		(void)!write(1, &s[i++], 1);
+	(void)!write(1, "\n", 1);
+}
+
 static int	count_words(char *s, char sep)
 {
 	int		c;

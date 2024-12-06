@@ -34,7 +34,7 @@ void	error_free(t_stack_node **a, char **argv, bool flag)
 	free_stack(a);
 	if (flag)
 		free_matrix(argv);
-	ft_putstr("ERROR");
+	ft_putstr("ERORR");
 	exit(1);
 }
 

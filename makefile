@@ -23,7 +23,6 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
-	cd ../checker && make fclean
 
 re : fclean all
 
