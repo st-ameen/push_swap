@@ -1,35 +1,27 @@
 #include "push_swap.h"
 
-void ft_putstr(char *s)
+void	ft_putstr(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(s[i])
-		(void)!write(1, &s[i++], 1);
-	(void)!write(1, "\n", 1);
+	while (s[i])
+		write(1, &s[i++], 1);
+	write(1, "\n", 1);
 }
 
 static int	count_words(char *s, char sep)
 {
-	int		c;
-	bool	inside_word;
+	int	c;
+	int	i;
 
+	i = 0;
 	c = 0;
-	while (*s)
+	while (s[i])
 	{
-		inside_word = false;
-		while (*s == sep && *s)
-			++s;
-		while (*s != sep && *s)
-		{
-			if (!inside_word)
-			{
-				++c;
-				inside_word = true;
-			}
-			++s;
-		}
+		if (s[i] != sep && (s[i + 1] == sep || !s[i + 1]))
+			c++;
+		i++;
 	}
 	return (c);
 }
@@ -48,41 +40,41 @@ static char	*get_next_word(char *s, char sep)
 	while ((s[cursor + len] != sep) && s[cursor + len])
 		len++;
 	next_str = malloc(len * sizeof(char) + 1);
-	if (NULL == next_str)
+	if (!next_str)
 		return (NULL);
 	while ((s[cursor] != sep) && s[cursor])
 		next_str[i++] = s[cursor++];
 	next_str[i] = '\0';
 	return (next_str);
 }
-char **ft_split(char *s, char sep)
+char	**ft_split(char *s, char sep)
 {
-    int w_c;
-    int i;
-    char **vector;
+	int		w_c;
+	int		i;
+	char	**strs;
 
-    i = 0;
-    w_c = count_words(s , sep);
-        if (!w_c)
-            exit(1);
-    vector = malloc(sizeof(char *) * (size_t)(w_c + 2));
-    if (!vector)
-        return NULL;
-    while (w_c-- >= 0)
-    {
-        if (i == 0)
-        {
-            vector[i] = malloc(sizeof(char));
-            if (!vector[i])
-            {
-                free(vector);
-                return NULL;
-            }
-            vector[i++][0] = '\0';
-            continue;
-        }
-        vector[i++] = get_next_word(s, sep);
-    }
-    vector[i] = NULL;
-    return vector;
+	i = 0;
+	w_c = count_words(s, sep);
+	if (!w_c)
+		exit(1);
+	strs = malloc(sizeof(char *) * (size_t)(w_c + 2));
+	if (!strs)
+		return (NULL);
+	while (w_c-- >= 0)
+	{
+		if (i == 0)
+		{
+			strs[i] = malloc(sizeof(char));
+			if (!strs[i])
+			{
+				free(strs);
+				return (NULL);
+			}
+			strs[i++][0] = '\0';
+			w_c--;
+		}
+		strs[i++] = get_next_word(s, sep);
+	}
+	strs[i] = NULL;
+	return (strs);
 }

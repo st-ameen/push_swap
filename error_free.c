@@ -5,7 +5,7 @@ void	free_matrix(char **argv)
 	int	i;
 
 	i = -1;
-	if (NULL == argv || NULL == *argv)
+	if (!argv || !*argv)
 		return ;
 	while (argv[i])
 		free(argv[i++]);
@@ -34,19 +34,17 @@ void	error_free(t_stack_node **a, char **argv, bool flag)
 	free_stack(a);
 	if (flag)
 		free_matrix(argv);
-	ft_putstr("ERORR");
+	ft_putstr("Error");
 	exit(1);
 }
 
 int	error_syntax(char *str_nbr)
 {
-	if (!(*str_nbr == '+'
-			|| *str_nbr == '-'
-			|| (*str_nbr >= '0' && *str_nbr <= '9')))
+	if (!(*str_nbr == '+' || *str_nbr == '-' || (*str_nbr >= '0'
+				&& *str_nbr <= '9')))
 		return (1);
-	if ((*str_nbr == '+'
-			|| *str_nbr == '-')
-		&& !(str_nbr[1] >= '0' && str_nbr[1] <= '9'))
+	if ((*str_nbr == '+' || *str_nbr == '-') && !(str_nbr[1] >= '0'
+			&& str_nbr[1] <= '9'))
 		return (1);
 	while (*++str_nbr)
 	{
@@ -58,7 +56,7 @@ int	error_syntax(char *str_nbr)
 
 int	error_repetition(t_stack_node *a, int nbr)
 {
-	if (NULL == a)
+	if (!a)
 		return (0);
 	while (a)
 	{

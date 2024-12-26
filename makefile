@@ -1,7 +1,7 @@
 NAME = push_swap
 ARCHIVE = push_swap.a
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g -O2 
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 MAKE_LIB = ar -rcs
 
 SRCS = $(wildcard *.c)
@@ -14,9 +14,6 @@ $(NAME) : $(ARCHIVE)
 
 $(ARCHIVE) : $(OBJS)
 	$(MAKE_LIB) $(ARCHIVE) $^
-
-%.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ 
 
 clean :
 	rm -f $(OBJS) $(ARCHIVE)

@@ -9,7 +9,8 @@ static long	ft_atol(const char *str)
 	num = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
+			|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f'))
 		i++;
 	if (str[i] == '+')
 		i++;
@@ -26,13 +27,13 @@ static long	ft_atol(const char *str)
 	return (num * sign);
 }
 
-void stack_init(t_stack_node **a, char **av, bool flag)
+void	stack_init(t_stack_node **a, char **av, bool flag)
 {
-    long nbr;
-    int i;
-    
-    i = 0;
-    while (av[i])
+	long	nbr;
+	int		i;
+
+	i = 0;
+	while (av[i])
 	{
 		if (error_syntax(av[i]))
 			error_free(a, av, flag);

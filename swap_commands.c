@@ -16,7 +16,7 @@ static void	swap(t_stack_node **head)
 	(*head)->prev = NULL;
 }
 
-void	sa(t_stack_node	**a, bool checker)
+void	sa(t_stack_node **a, bool checker)
 {
 	swap(a);
 	if (!checker)

@@ -6,7 +6,7 @@ void	set_current_position(t_stack_node *stack)
 	int	centerline;
 
 	i = 0;
-	if (NULL == stack)
+	if (!stack)
 		return ;
 	centerline = stack_len(stack) / 2;
 	while (stack)
@@ -74,7 +74,7 @@ void	set_cheapest(t_stack_node *b)
 	long			best_match_value;
 	t_stack_node	*best_match_node;
 
-	if (NULL == b)
+	if (!b)
 		return ;
 	best_match_value = 2147483647;
 	best_match_node = NULL;

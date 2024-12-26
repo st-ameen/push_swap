@@ -31,20 +31,20 @@ static t_stack_node	*find_high(t_stack_node *stack)
 		}
 		stack = stack->next;
 	}
-	return highest_node;
+	return (highest_node);
 }
 
-
-void tiny_sort(t_stack_node **a)
+void	tiny_sort(t_stack_node **a)
 {
-    t_stack_node *high;
-    high = find_high(*a);
-    if (*a == high)
-        ra(a, false);
-    else if ((*a)->next == high)
-        rra(a, false);
-    if ((*a)->value > (*a)->next->value)
-        sa(a, false);
+	t_stack_node	*high;
+
+	high = find_high(*a);
+	if (*a == high)
+		ra(a, false);
+	else if ((*a)->next == high)
+		rra(a, false);
+	if ((*a)->value > (*a)->next->value)
+		sa(a, false);
 }
 
 void	handle_five(t_stack_node **a, t_stack_node **b)
