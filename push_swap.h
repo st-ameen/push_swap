@@ -5,6 +5,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <limits.h>
 
 typedef struct s_stack_node
 {
@@ -55,6 +56,8 @@ t_stack_node			*return_cheapest(t_stack_node *stack);
 int						stack_len(t_stack_node *stack);
 bool					stack_sorted(t_stack_node *stack);
 void					finish_rotation(t_stack_node **s, t_stack_node *n, char c);
+t_stack_node	*find_largest(t_stack_node *stack);
+int	*stack_to_array(t_stack_node *stack);
 // algorithms---------------------------------------------------------------------------
 void					tiny_sort(t_stack_node **a);
 void					handle_five(t_stack_node **a, t_stack_node **b);

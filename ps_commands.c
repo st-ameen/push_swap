@@ -52,6 +52,17 @@ static void	move_nodes(t_stack_node **a, t_stack_node **b)
 	pa(a, b, false);
 }
 
+int bigger_than_median(t_stack_node *a, int median)
+{
+  while (a)
+  {
+    if (a->value < median)
+        return 0;
+    a = a->next;
+  }
+  return 1;
+}
+
 void	push_swap(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node *smallest;
@@ -60,11 +71,28 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	len_a = stack_len(*a);
 	if (len_a == 5)
 		handle_five(a, b);
-	else
-	{
-		while (len_a-- > 3)
-			pb(b, a, false);
-	}
+  int *sorted = stack_to_array(*a);
+  int median = sorted[len_a/2];
+  int q1 = sorted[len_a/4];
+  free(sorted);
+    
+  while (stack_len(*a) > 3)
+  {
+      if (bigger_than_median(*a, median))
+      {
+        while (stack_len(*a) > 3)
+          pb(b, a, false);
+        break;
+      }
+      if ((*a)->value < median)
+      {
+        pb(b, a, false);
+        if ((*b)->value < q1)
+          rb(b, false);
+      }
+      else
+        ra(a, false);
+  }
 	tiny_sort(a);
 	while (*b)
 	{

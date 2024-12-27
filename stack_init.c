@@ -1,5 +1,26 @@
 #include "push_swap.h"
 
+t_stack_node	*find_largest(t_stack_node *stack)
+{
+	long			largest;
+	t_stack_node	*largest_node;
+
+	if (!stack)
+		return (NULL);
+	largest = -2147483648;
+	largest_node = NULL;
+	while (stack)
+	{
+		if (stack->value > largest)
+		{
+			largest = stack->value;
+			largest_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (largest_node);
+}
+
 static long	ft_atol(const char *str)
 {
 	long	num;
